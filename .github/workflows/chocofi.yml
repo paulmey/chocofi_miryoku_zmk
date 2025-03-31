@@ -2,12 +2,15 @@
 # https://github.com/manna-harbour/miryoku
 
 name: 'Build Chocofi'
-on: workflow_dispatch
+on: 
+  push:
+  pull_request:
+  workflow_dispatch:
 jobs:
   build:
     uses: ./.github/workflows/main.yml
     secrets: inherit
     with:
       board: '["nice_nano_v2"]'
-      shield: '["corne_left nice_view_adapter nice_view","corne_right nice_view_adapter nice_view,settings_reset"]'
+      shield: '["corne_left nice_view_adapter nice_view","corne_right nice_view_adapter nice_view", "settings_reset"]'
       kconfig: '["CONFIG_BT_CTLR_TX_PWR_PLUS_8=y"]'
